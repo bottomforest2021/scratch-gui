@@ -1,0 +1,147 @@
+﻿Block Type,Ja,En
+motion_movesteps,() 歩動かす,@
+motion_turnright,@turnRight () 度回す,@
+motion_turnleft,@turnLeft () 度回す,@
+motion_pointindirection,() 度に向ける,@
+motion_pointtowards,() へ向ける,@
+motion_gotoxy,x座標を () 、y座標を () にする,@
+motion_goto,() へ行く,@
+motion_glidesecstoxy,() 秒でx座標を () に、y座標を () に変える,@
+motion_glideto,() 秒で () へ行く,@
+motion_changexby,x座標を () ずつ変える,@
+motion_setx,x座標を () にする,@
+motion_changeyby,y座標を () ずつ変える,@
+motion_sety,y座標を () にする,@
+motion_setrotationstyle,回転方法を () にする,@
+looks_sayforsecs,() と () 秒言う,@
+looks_say,() と言う,@
+looks_thinkforsecs,() と () 秒考える,@
+looks_think,() と考える,@
+looks_show,表示する,@
+looks_hide,隠す,@
+looks_switchcostumeto,コスチュームを () にする,@
+looks_nextcostume,次のコスチュームにする,@
+looks_nextbackdrop,次の背景にする,@
+looks_switchbackdropto,背景を () にする,@
+looks_switchbackdroptoandwait,背景を () にして待つ,@
+looks_changeeffectby,() の効果を () ずつ変える,@
+looks_seteffectto,() の効果を () にする,@
+looks_cleargraphiceffects,画像効果をなくす,@
+looks_changesizeby,大きさを () ずつ変える,@
+looks_setsizeto,大きさを () %にする,@
+looks_gotofrontback,() へ移動する,@
+looks_goforwardbackwardlayers,() 層 (),@
+sound_play,() の音を鳴らす,@
+sound_changeeffectby,() の効果を () ずつ変える,@
+sound_seteffectto,() の効果を () にする,@
+sound_cleareffects,音の効果をなくす,@
+sound_playuntildone,終わるまで () の音を鳴らす,@
+sound_stopallsounds,すべての音を止める,@
+,,@
+,,@
+,,@
+,,@
+sound_changevolumeby,音量を () ずつ変える,@
+sound_setvolumeto,音量を () %にする,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+event_whenflagclicked,@greenFlag が押されたとき,@
+event_whenkeypressed,() キーが押されたとき,@
+event_whenthisspriteclicked,このスプライトが押されたとき,@
+event_whenstageclicked,ステージが押されたとき,@
+event_whenbackdropswitchesto,背景が () になったとき,@
+event_whengreaterthan,() > () のとき,@
+event_whenbroadcastreceived,() を受け取ったとき,@
+event_broadcast,() を送る,@
+event_broadcastandwait,() を送って待つ,@
+control_wait,() 秒待つ,@
+control_repeat,() 回繰り返す,@
+control_forever,ずっと,@
+control_if,もし () なら,@
+control_wait_until,() まで待つ,@
+control_repeat_until,() まで繰り返す,@
+control_stop,[すべてを止める v]::cap control,@
+control_start_as_clone,クローンされたとき,@
+control_create_clone_of,() のクローンを作る,@
+control_delete_this_clone,このクローンを削除する,@
+sensing_askandwait,() と聞いて待つ,@
+,,@
+,,@
+,,@
+sensing_resettimer,タイマーをリセット,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+,,@
+motion_ifonedgebounce,もし端に着いたら、跳ね返る,@
+,,@
+,,@
+,,@
+,,@
+motion_xposition,x座標,@
+motion_yposition,y座標,@
+motion_direction,向き,@
+looks_costumenumbername,コスチュームの[番号 v] ::ring looks,@
+,,@
+looks_size,大きさ,@
+,,@
+,,@
+looks_backdropnumbername,背景の[番号 v] ::ring looks,@
+sound_volume,音量::sound,
+,,
+sensing_touchingobject,() に触れた,
+sensing_touchingcolor,() 色に触れた,
+sensing_coloristouchingcolor,() 色が () 色に触れた,
+sensing_distanceto,() までの距離,
+sensing_answer,答え,
+sensing_keypressed,() キーが押された,
+sensing_mousedown,マウスが押された,
+sensing_mousex,マウスのx座標,
+sensing_mousey,マウスのy座標,
+sensing_setdragmode,ドラッグ () ようにする,
+sensing_loudness,音量::sensing,
+,,
+sensing_timer,タイマー,
+sensing_of,() の (),
+sensing_current,現在の (),
+sensing_dayssince2000,2000年からの日数,
+sensing_username,ユーザー名,
+operator_add,() + (),
+operator_subtract,() - (),
+operator_multiply,() * (),
+operator_divide,() / (),
+operator_random,() から () までの乱数,
+operator_lt,() < (),
+operator_equals,() = (),
+operator_gt,() > (),
+operator_and,() かつ (),
+operator_or,() または (),
+operator_not,() ではない,
+operator_join,() と (),
+operator_letter_of,() の () 番目の文字,
+operator_length,() の長さ,
+operator_mod,() を () で割った余り,
+operator_round,() を四捨五入,
+operator_mathop,`()の[絶対値 v] ::operators ring,
+operator_contains,() に () が含まれる,
+,,
+,,
+,,
+,,
+control_if_else,もし () なら\nでなければ,
