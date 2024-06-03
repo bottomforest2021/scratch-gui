@@ -261,8 +261,6 @@
                         }
                         tableHTML += '</tbody>';
                         document.getElementById('category-table').innerHTML = tableHTML;
-                        // scratchblocks をレンダリング
-                        scratchblocks.renderMatching('.scratchblocks', {languages:["en","ja"], style:"scratch3"});
                     })
                     .catch(error => console.error('Error:', error));
             }
@@ -320,9 +318,6 @@
                             tc.classList.add('active');
                         }
                     });
-
-                    // scratchblocks をレンダリング
-                    scratchblocks.renderMatching('.scratchblocks', {languages:["en","ja"], style:"scratch3"});
                 });
             });
 
