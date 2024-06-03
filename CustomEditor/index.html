@@ -93,6 +93,7 @@
             height: 20px;
         }
         .scratchblocks {
+            margin-top : 10%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -252,7 +253,7 @@
                         for(let i = 1; i < rows.length; i++) {
                             const cells = rows[i].split(',').map(cell => cell.trim());
                             if(cells.length > 1 && cells[0] !== '' && cells[columnIndex - 1] !== '') {
-                                const columnData = cells[columnIndex - 1].replace(/\\n/g, '<br>');
+                                const columnData = cells[columnIndex - 1].replace(/BRTAG/g, "<br>");
                                 tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="category-checkbox" checked></td>';
                                 tableHTML += `<td class="category-id hidden">${cells[0]}</td>`;
                                 tableHTML += `<td><div class="scratchcategorys">${columnData}</div></td>`;
@@ -283,7 +284,7 @@
                         for(let i = 1; i < rows.length; i++) {
                             const cells = rows[i].split(',').map(cell => cell.trim());
                             if(cells.length > 1 && cells[0] !== '' && cells[columnIndex - 1] !== '') {
-                                const columnData = cells[columnIndex - 1].replace(/\\n/g, '<br>');
+                                const columnData = cells[columnIndex - 1].replace(/BRTAG/g, "<br>");
                                 tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="row-checkbox" checked></td>';
                                 tableHTML += `<td class="row-id hidden">${cells[0]}</td>`;
                                 tableHTML += `<td><div class="scratchsingleblock">${columnData}</div></td>`;
@@ -395,4 +396,4 @@
         });
     </script>
 </body>
-</html>
+</html>	
