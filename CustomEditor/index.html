@@ -267,7 +267,9 @@
                         tableHTML += '</tbody>';
                         document.getElementById('category-table').innerHTML = tableHTML;
                         // scratchblocks をレンダリング
-                        scratchblocks.renderMatching('.scratchcategorys', {languages:["en","ja"], style:"scratch3"});
+                        document.querySelectorAll('.scratchcategorys').forEach(element => {
+                            scratchblocks.render(element, {languages:["en","ja"], style:"scratch3"});
+                        });
                     })
                     .catch(error => console.error('Error:', error));
             }
@@ -298,7 +300,9 @@
                         tableHTML += '</tbody>';
                         document.getElementById('csv-table').innerHTML = tableHTML;
                         // scratchblocks をレンダリング
-                        scratchblocks.renderMatching('.scratchblocks', {languages:["en","ja"], style:"scratch3"});
+                        document.querySelectorAll('.scratchblocks').forEach(element => {
+                            scratchblocks.render(element, {languages:["en","ja"], style:"scratch3"});
+                        });
                     })
                     .catch(error => console.error('Error:', error));
             }
