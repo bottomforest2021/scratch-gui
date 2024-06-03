@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表示制限版 Scratch3.0 URL生成サイト</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            width: 100%;
+        }
+        main {
+            width: 90%;
+            max-width: 800px;
+            margin: 2em auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2em;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 0.5em;
+        }
+        p {
+            margin: 0.5em 0 1.5em;
+        }
+        label, select, button {
+            font-size: 1em;
+            margin-right: 0.5em;
+        }
+        select {
+            padding: 0.5em;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 0.5em;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em;
+            text-align: left;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .hidden {
+            display: none;
+        }
+        .checkbox-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+        .scratchblocks {
+            margin-top : 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #result-url {
+            background-color: #f2f2f2;
+            padding: 1em;
+            border-radius: 4px;
+            word-wrap: break-word;
+        }
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 1em;
+        }
+        .tab {
+            padding: 1em;
+            font-size: 1.2em;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            margin-right: 0.25em;
+        }
+        .tab.active {
+            background-color: white;
+            border-top: 2px solid #4CAF50;
+            border-left: 2px solid #4CAF50;
+            border-right: 2px solid #4CAF50;
+            border-bottom: none;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+    <script src="https://scratchblocks.github.io/js/scratchblocks-v3.4-min.js"></script>
+    <script src="https://scratchblocks.github.io/js/translations-all-v3.4.js"></script>
+</head>
+<body>
+    <header>
+        <label for="column-select">言語：</label>
+        <select id="column-select">
+            <option value="2">日本語</option>
+            <option value="3">English</option>
+        </select>
+    </header>
+
+    <main>
+        <h1 id="main-title">表示制限版 Scratch3.0 URL生成サイト</h1>
+        <p id="main-description">
+            "表示制限版 Scratch3.0"は、使わないブロックやコンテンツの表示を制限できるScratchです。<br>
+            教材として利用する際の、生徒の思わぬ誤操作を防ぐことができます。<br><br>
+            本サイトで発行したURLにアクセスしてご利用ください。
+        </p>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="category-tab">カテゴリーごとに選択する</div>
+            <div class="tab" data-tab="block-tab">ブロックごとに選択する</div>
+        </div>
+
+        <div id="category-tab" class="tab-content active">
+            <p id="category-description">チェックボックスを入れていないカテゴリーは非表示になります。</p>
+            <button id="check-all-categories">すべてチェックする</button>
+            <button id="uncheck-all-categories">すべてのチェックを外す</button>
+            <div style="margin-bottom: 1em;"></div>
+            <table id="category-table"></table>
+        </div>
+
+        <div id="block-tab" class="tab-content">
+            <p id="block-description">チェックボックスを入れていないブロックは非表示になります。</p>
+            <button id="check-all-blocks">すべてチェックする</button>
+            <button id="uncheck-all-blocks">すべてのチェックを外す</button>
+            <div style="margin-bottom: 1em;"></div>
+            <table id="csv-table"></table>
+        </div>
+
+        <button id="generate-url">URLを生成</button>
+        <button id="copy-url">URLをクリップボードにコピー</button>
+        <p id="result-url"></p>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectElement = document.getElementById('column-select');
+            const generateButton = document.getElementById('generate-url');
+            const copyButton = document.getElementById('copy-url');
+            const resultUrlElement = document.getElementById('result-url');
+            const checkAllCategoriesButton = document.getElementById('check-all-categories');
+            const uncheckAllCategoriesButton = document.getElementById('uncheck-all-categories');
+            const checkAllBlocksButton = document.getElementById('check-all-blocks');
+            const uncheckAllBlocksButton = document.getElementById('uncheck-all-blocks');
+            const mainTitle = document.getElementById('main-title');
+            const mainDescription = document.getElementById('main-description');
+            const categoryDescription = document.getElementById('category-description');
+            const blockDescription = document.getElementById('block-description');
+
+            const textContent = {
+                jp: {
+                    mainTitle: '表示制限版 Scratch3.0 URL生成サイト',
+                    mainDescription: '"表示制限版 Scratch3.0"は、使わないブロックやコンテンツの表示を制限できるScratchです。<br>教材として利用する際の、生徒の思わぬ誤操作を防ぐことができます。<br><br>本サイトで発行したURLにアクセスしてご利用ください。',
+                    categoryTab: 'カテゴリーごとに選択する',
+                    blockTab: 'ブロックごとに選択する',
+                    categoryDescription: 'チェックボックスを入れていないカテゴリーは非表示になります。',
+                    blockDescription: 'チェックボックスを入れていないブロックは非表示になります。',
+                    checkAll: 'すべてチェックする',
+                    uncheckAll: 'すべてのチェックを外す',
+                    generateUrl: 'URLを生成',
+                    copyUrl: 'URLをクリップボードにコピー',
+                    alertCopied: 'URLがクリップボードにコピーされました。',
+                },
+                en: {
+                    mainTitle: 'Scratch3.0 Limited Display URL Generator',
+                    mainDescription: '"Scratch3.0 Limited Display" is a version of Scratch that allows you to limit the display of unused blocks and content.<br>It can prevent unintended operations by students when used as educational material.<br><br>Please access the URL issued by this site to use it.',
+                    categoryTab: 'Select by Category',
+                    blockTab: 'Select by Block',
+                    categoryDescription: 'Categories without checkboxes will be hidden.',
+                    blockDescription: 'Blocks without checkboxes will be hidden.',
+                    checkAll: 'Check All',
+                    uncheckAll: 'Uncheck All',
+                    generateUrl: 'Generate URL',
+                    copyUrl: 'Copy URL to Clipboard',
+                    alertCopied: 'URL has been copied to the clipboard.',
+                }
+            };
+
+            function updateTextContent(language) {
+                const content = textContent[language];
+                mainTitle.textContent = content.mainTitle;
+                mainDescription.innerHTML = content.mainDescription;
+                document.querySelector('[data-tab="category-tab"]').textContent = content.categoryTab;
+                document.querySelector('[data-tab="block-tab"]').textContent = content.blockTab;
+                categoryDescription.textContent = content.categoryDescription;
+                blockDescription.textContent = content.blockDescription;
+                checkAllCategoriesButton.textContent = content.checkAll;
+                uncheckAllCategoriesButton.textContent = content.uncheckAll;
+                checkAllBlocksButton.textContent = content.checkAll;
+                uncheckAllBlocksButton.textContent = content.uncheckAll;
+                generateButton.textContent = content.generateUrl;
+                copyButton.textContent = content.copyUrl;
+            }
+
+            function updateCategoryTable(columnIndex) {
+                fetch('categorydata.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        const rows = data.split('\n');
+                        let tableHTML = '<thead class="hidden"><tr><th></th>';
+
+                        // CSVのヘッダーをテーブルヘッダーに変換
+                        const headers = rows[0].split(',');
+                        tableHTML += `<th class="hidden">${headers[0].trim()}</th><th>${headers[columnIndex - 1].trim()}</th>`;
+                        tableHTML += '</tr></thead><tbody>';
+
+                        // CSVのデータをテーブルの行に変換
+                        for(let i = 1; i < rows.length; i++) {
+                            const cells = rows[i].split(',').map(cell => cell.trim());
+                            if(cells.length > 1 && cells[0] !== '' && cells[columnIndex - 1] !== '') {
+                                const columnData = cells[columnIndex - 1].replace(/BRTAG/g, "<br>");
+                                tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="category-checkbox" checked></td>';
+                                tableHTML += `<td class="category-id hidden">${cells[0]}</td>`;
+                                tableHTML += `<td><div class="scratchcategorys">${columnData}</div></td>`;
+                                tableHTML += '</tr>';
+                            }
+                        }
+                        tableHTML += '</tbody>';
+                        document.getElementById('category-table').innerHTML = tableHTML;
+                        // scratchblocks をレンダリング
+                        scratchblocks.renderMatching('.scratchcategorys', {languages:["en","ja"], style:"scratch3"});
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            function updateTable(columnIndex) {
+                fetch('data.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        const rows = data.split('\n');
+                        let tableHTML = '<thead class="hidden"><tr><th></th>';
+
+                        // CSVのヘッダーをテーブルヘッダーに変換
+                        const headers = rows[0].split(',');
+                        tableHTML += `<th class="hidden">${headers[0].trim()}</th><th>${headers[columnIndex - 1].trim()}</th>`;
+                        tableHTML += '</tr></thead><tbody>';
+
+                        // CSVのデータをテーブルの行に変換
+                        for(let i = 1; i < rows.length; i++) {
+                            const cells = rows[i].split(',').map(cell => cell.trim());
+                            if(cells.length > 1 && cells[0] !== '' && cells[columnIndex - 1] !== '') {
+                                const columnData = cells[columnIndex - 1].replace(/BRTAG/g, "<br>");
+                                tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="row-checkbox" checked></td>';
+                                tableHTML += `<td class="row-id hidden">${cells[0]}</td>`;
+                                tableHTML += `<td><div class="scratchsingleblock">${columnData}</div></td>`;
+                                tableHTML += '</tr>';
+                            }
+                        }
+                        tableHTML += '</tbody>';
+                        document.getElementById('csv-table').innerHTML = tableHTML;
+                        scratchblocks.renderMatching('.scratchsingleblock', {languages:["en","ja"], style:"scratch3"});
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            function setCheckboxes(selector, checked) {
+                document.querySelectorAll(selector).forEach(checkbox => {
+                    checkbox.checked = checked;
+                });
+            }
+
+            // タブのイベントリスナーを追加
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-tab');
+                    tabContents.forEach(tc => {
+                        tc.classList.remove('active');
+                        if (tc.id === target) {
+                            tc.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // 初回読み込み
+            updateTextContent('jp');
+            updateCategoryTable(selectElement.value);
+            updateTable(selectElement.value);
+
+            // 選択変更時のイベントリスナー
+            selectElement.addEventListener('change', function() {
+                const language = this.value === '2' ? 'jp' : 'en';
+                updateTextContent(language);
+                updateCategoryTable(this.value);
+                updateTable(this.value);
+            });
+
+            // URL生成ボタンのイベントリスナー
+            generateButton.addEventListener('click', function() {
+                const uncheckedIds = [];
+                document.querySelectorAll('#csv-table tr').forEach(row => {
+                    const checkbox = row.querySelector('.row-checkbox');
+                    const rowId = row.querySelector('.row-id');
+                    if (checkbox && rowId && !checkbox.checked) {
+                        uncheckedIds.push(rowId.textContent);
+                    }
+                });
+                document.querySelectorAll('#category-table tr').forEach(row => {
+                    const checkbox = row.querySelector('.category-checkbox');
+                    const categoryId = row.querySelector('.category-id');
+                    if (checkbox && categoryId && !checkbox.checked) {
+                        uncheckedIds.push(categoryId.textContent);
+                    }
+                });
+                const url = `https://bottomforest2021.github.io/scratch-gui/?invalid=${uncheckedIds.join(',')}`;
+                resultUrlElement.textContent = url;
+            });
+
+            // クリップボードにコピーするボタンのイベントリスナー
+            copyButton.addEventListener('click', function() {
+                const url = resultUrlElement.textContent;
+
+                // テキストエリアを作成
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+
+                // テキストエリアの内容を選択
+                textArea.select();
+                textArea.setSelectionRange(0, 99999); // For mobile devices
+
+                // クリップボードにコピー
+                document.execCommand('copy');
+
+                const language = selectElement.value === '2' ? 'jp' : 'en';
+                alert(textContent[language].alertCopied);
+            });
+
+            // すべてチェックする/すべてのチェックを外すボタンのイベントリスナー
+            checkAllCategoriesButton.addEventListener('click', function() {
+                setCheckboxes('.category-checkbox', true);
+            });
+
+            uncheckAllCategoriesButton.addEventListener('click', function() {
+                setCheckboxes('.category-checkbox', false);
+            });
+
+            checkAllBlocksButton.addEventListener('click', function() {
+                setCheckboxes('.row-checkbox', true);
+            });
+
+            uncheckAllBlocksButton.addEventListener('click', function() {
+                setCheckboxes('.row-checkbox', false);
+            });
+        });
+    </script>
+</body>
+</html>	

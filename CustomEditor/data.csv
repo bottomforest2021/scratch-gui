@@ -1,181 +1,113 @@
-Block Type,Ja,En
+﻿Block Type,Ja,En
+,,
 motion_movesteps,() 歩動かす,move () steps
 motion_turnright,@turnRight () 度回す,turn cw () degrees
 motion_turnleft,@turnLeft () 度回す,turn ccw () degrees
-motion_pointindirection,() 度に向ける,point in direction ()
-motion_pointtowards,() へ向ける,point towards ()
-motion_gotoxy,x座標を () 、y座標を () にする,go to x: () y: ()
 motion_goto,() へ行く,go to ()
+motion_gotoxy,x座標を () 、y座標を () にする,go to x: () y: ()
 motion_glidesecstoxy,() 秒でx座標を () に、y座標を () に変える,glide () secs to x: () y: ()
 motion_glideto,() 秒で () へ行く,glide () secs to ()
+motion_pointindirection,() 度に向ける,point in direction ()
+motion_pointtowards,() へ向ける,point towards ()
 motion_changexby,x座標を () ずつ変える,change x by ()
 motion_setx,x座標を () にする,set x to ()
 motion_changeyby,y座標を () ずつ変える,change y by ()
 motion_sety,y座標を () にする,set y to ()
+motion_ifonedgebounce,もし端に着いたら、跳ね返る,if on edge &#44;bounce
 motion_setrotationstyle,回転方法を () にする,set rotation style ()
+motion_xposition,x座標,(x position)
+motion_yposition,y座標,(y position)
+motion_direction,向き,(direction)
+,,
 looks_sayforsecs,() と () 秒言う,say () for () seconds
 looks_say,() と言う,say ()
 looks_thinkforsecs,() と () 秒考える,think () for () seconds
 looks_think,() と考える,think ()
-looks_show,表示する,show
-looks_hide,隠す,hide
 looks_switchcostumeto,コスチュームを () にする,switch costume to ()
 looks_nextcostume,次のコスチュームにする,next costume
-looks_nextbackdrop,次の背景にする,next backdrop
 looks_switchbackdropto,背景を () にする,switch backdrop to ()
-looks_switchbackdroptoandwait,背景を () にして待つ,switch backdrop to () and wait
+looks_nextbackdrop,次の背景にする,next backdrop
+looks_changesizeby,大きさを () ずつ変える,change size by ()
+looks_setsizeto,大きさを () %にする,set size to () %
 looks_changeeffectby,() の効果を () ずつ変える,change () effect by ()
 looks_seteffectto,() の効果を () にする,set () effect to ()
 looks_cleargraphiceffects,画像効果をなくす,clear graphic effects
-looks_changesizeby,大きさを () ずつ変える,change size by ()
-looks_setsizeto,大きさを () %にする,set size to () %
+looks_show,表示する,show
+looks_hide,隠す,hide
 looks_gotofrontback,() へ移動する,go to () layer
 looks_goforwardbackwardlayers,() 層 (),go () () layers
-sound_play,() の音を鳴らす,start sound ()
-sound_changeeffectby,() の効果を () ずつ変える,change () effect by ()
-sound_seteffectto,() の効果を () にする,set () effect to ()
-sound_cleareffects,音の効果をなくす,clear sound effects
+looks_costumenumbername,コスチュームの[番号 v] ::ring looks,costume [number v]
+looks_backdropnumbername,背景の[番号 v] ::ring looks,backdrop [number v]
+looks_size,大きさ,(size)
+,,
 sound_playuntildone,終わるまで () の音を鳴らす,play sound () until done
+sound_play,() の音を鳴らす,start sound ()
 sound_stopallsounds,すべての音を止める,stop all sounds
-,,
-,,
-,,
-,,
+sound_changeeffectby,() の効果を () ずつ変える ::sound,change () effect by () ::sound
+sound_seteffectto,() の効果を () にする ::sound,set () effect to () ::sound
+sound_cleareffects,音の効果をなくす,clear sound effects
 sound_changevolumeby,音量を () ずつ変える,change volume by ()
 sound_setvolumeto,音量を () %にする,set volume to () %
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
+sound_volume,音量::sound,(volume::sound)
 ,,
 event_whenflagclicked,@greenFlag が押されたとき,when flag clicked
 event_whenkeypressed,() キーが押されたとき,when () key pressed
 event_whenthisspriteclicked,このスプライトが押されたとき,when this sprite clicked
-event_whenstageclicked,ステージが押されたとき,when stage clicked
 event_whenbackdropswitchesto,背景が () になったとき,when backdrop switches to ()
 event_whengreaterthan,[音量 v] > () のとき,when [loudness v] > ()
 event_whenbroadcastreceived,() を受け取ったとき,when I receive ()
 event_broadcast,() を送る,broadcast ()
 event_broadcastandwait,() を送って待つ,broadcast () and wait
+,,
 control_wait,() 秒待つ,wait () seconds
 control_repeat,() 回繰り返す,repeat () 
-control_forever,ずっと,forever 
+control_forever,ずっと,forever
 control_if,もし () なら,if () then 
+control_if_else,もし () なら BRTAG でなければ,if () then BRTAG else
 control_wait_until,() まで待つ,wait until ()
 control_repeat_until,() まで繰り返す,repeat until () 
 control_stop,[すべてを止める v]::cap control,stop [all v]
 control_start_as_clone,クローンされたとき,when I start as a clone
 control_create_clone_of,() のクローンを作る,create clone of ()
 control_delete_this_clone,このクローンを削除する,delete this clone
-sensing_askandwait,() と聞いて待つ,ask () and wait
 ,,
-,,
-,,
-sensing_resettimer,タイマーをリセット,reset timer
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-motion_ifonedgebounce,もし端に着いたら、跳ね返る,"if on edge, bounce"
-,,
-,,
-,,
-,,
-motion_xposition,x座標,(x position)
-motion_yposition,y座標,(y position)
-motion_direction,向き,(direction)
-looks_costumenumbername,コスチュームの[番号 v] ::ring looks,costume [number v]
-,,
-looks_size,大きさ,(size)
-,,
-,,
-looks_backdropnumbername,背景の[番号 v] ::ring looks,backdrop [number v]
-sound_volume,音量::sound,(volume::sound)
-,,
-sensing_touchingobject,() に触れた,<touching () ?>
-sensing_touchingcolor,() 色に触れた,<touching color () ?>
-sensing_coloristouchingcolor,() 色が () 色に触れた,<color () is touching () ?>
+sensing_touchingobject,() に触れた,touching () ? 
+sensing_touchingcolor,() 色に触れた,touching color () ?
+sensing_coloristouchingcolor,() 色が () 色に触れた,color () is touching () ?
 sensing_distanceto,() までの距離,(distance to ())
+sensing_askandwait,() と聞いて待つ,ask () and wait
 sensing_answer,答え,(answer)
-sensing_keypressed,() キーが押された,<key () pressed?>
-sensing_mousedown,マウスが押された,<mouse down?>
+sensing_keypressed,() キーが押された,key () pressed?
+sensing_mousedown,マウスが押された,mouse down?
 sensing_mousex,マウスのx座標,(mouse x)
 sensing_mousey,マウスのy座標,(mouse y)
 sensing_setdragmode,ドラッグ () ようにする,set drag mode ()
 sensing_loudness,音量::sensing,(volume::sensing)
-,,
 sensing_timer,タイマー,(timer)
-sensing_of,() の (),(() of ())
+sensing_resettimer,タイマーをリセット,reset timer
+sensing_of,(ステージ v) の (背景 v),((backdrop # v) of (Stage v))
 sensing_current,現在の (),(current ())
 sensing_dayssince2000,2000年からの日数,(days since 2000)
 sensing_username,ユーザー名,(username)
+,,
 operator_add,() + (),(() + ())
 operator_subtract,() - (),(() - ())
 operator_multiply,() * (),(() * ())
 operator_divide,() / (),(() / ())
 operator_random,() から () までの乱数,(pick random () to ())
-operator_lt,() < (),<() < ()>
-operator_equals,() = (),<() = ()>
-operator_gt,() > (),<() > ()>
-operator_and,() かつ (),<() and ()>
-operator_or,() または (),<() or ()>
-operator_not,() ではない,<not ()>
+operator_gt,() > (),() > ()
+operator_lt,() < (),() < ()
+operator_equals,() = (),() = ()
+operator_and,() かつ (),() and ()
+operator_or,() または (),() or ()
+operator_not,() ではない,not ()
 operator_join,() と (),(join () ())
 operator_letter_of,() の () 番目の文字,(letter () of ())
 operator_length,() の長さ,(length of ())
+operator_contains,() に () が含まれる,() contains ()
 operator_mod,() を () で割った余り,(() mod ())
 operator_round,() を四捨五入,(round ())
-operator_mathop,`()の[絶対値 v] ::operators ring,` [abs v] of () :: operators
-operator_contains,() に () が含まれる,<() contains () ?>
+operator_mathop,`()の[絶対値 v] ::operators ring,[abs v] of () :: operators
 ,,
-,,
-,,
-,,
-control_if_else,もし () なら\nでなければ,if () then \n else
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,  
+looks_switchbackdroptoandwait,背景を () にして待つ,switch backdrop to () and wait
+event_whenstageclicked,ステージが押されたとき,when stage clicked
