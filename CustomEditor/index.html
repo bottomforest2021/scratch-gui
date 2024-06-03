@@ -255,16 +255,14 @@
                                 const columnData = cells[columnIndex - 1].replace(/\\n/g, '<br>');
                                 tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="category-checkbox" checked></td>';
                                 tableHTML += `<td class="category-id hidden">${cells[0]}</td>`;
-                                tableHTML += `<td><div class="scratchblocks">${columnData}</div></td>`;
+                                tableHTML += `<td><div class="scratchcategorys">${columnData}</div></td>`;
                                 tableHTML += '</tr>';
                             }
                         }
                         tableHTML += '</tbody>';
                         document.getElementById('category-table').innerHTML = tableHTML;
-                        document.querySelectorAll('.scratchblocks').forEach(element => {
-                            scratchblocks.render(element, {languages:["en","ja"], style:"scratch3"});
-                        });
-
+                        // scratchblocks をレンダリング
+                        scratchblocks.renderMatching('.scratchcategorys', {languages:["en","ja"], style:"scratch3"});
                     })
                     .catch(error => console.error('Error:', error));
             }
@@ -288,15 +286,13 @@
                                 const columnData = cells[columnIndex - 1].replace(/\\n/g, '<br>');
                                 tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="row-checkbox" checked></td>';
                                 tableHTML += `<td class="row-id hidden">${cells[0]}</td>`;
-                                tableHTML += `<td><div class="scratchblocks">${columnData}</div></td>`;
+                                tableHTML += `<td><div class="scratchsingleblock">${columnData}</div></td>`;
                                 tableHTML += '</tr>';
                             }
                         }
                         tableHTML += '</tbody>';
                         document.getElementById('csv-table').innerHTML = tableHTML;
-                        document.querySelectorAll('.scratchblocks').forEach(element => {
-                            scratchblocks.render(element, {languages:["en","ja"], style:"scratch3"});
-                        });
+                        scratchblocks.renderMatching('.scratchsingleblock', {languages:["en","ja"], style:"scratch3"});
                     })
                     .catch(error => console.error('Error:', error));
             }
