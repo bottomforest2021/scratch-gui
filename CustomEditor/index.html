@@ -97,6 +97,11 @@
             align-items: center;
             justify-content: center;
         }
+        .scratchblocks_category {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         #result-url {
             background-color: #f2f2f2;
             padding: 1em;
@@ -255,14 +260,14 @@
                                 const columnData = cells[columnIndex - 1].replace(/\\n/g, '<br>');
                                 tableHTML += '<tr><td class="checkbox-cell"><input type="checkbox" class="category-checkbox" checked></td>';
                                 tableHTML += `<td class="category-id hidden">${cells[0]}</td>`;
-                                tableHTML += `<td><div class="scratchblocks">${columnData}</div></td>`;
+                                tableHTML += `<td><div class="scratchblocks_category">${columnData}</div></td>`;
                                 tableHTML += '</tr>';
                             }
                         }
                         tableHTML += '</tbody>';
                         document.getElementById('category-table').innerHTML = tableHTML;
                         // scratchblocks をレンダリング
-                        scratchblocks.renderMatching('.scratchblocks', {languages:["en","ja"], style:"scratch3"});
+                        scratchblocks.renderMatching('.scratchblocks_category', {languages:["en","ja"], style:"scratch3"});
                     })
                     .catch(error => console.error('Error:', error));
             }
