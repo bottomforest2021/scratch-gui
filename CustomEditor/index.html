@@ -130,6 +130,17 @@
         .tab-content.active {
             display: block;
         }
+
+        footer {
+            margin-top: 2em;
+            padding: 1em;
+            background-color: #f1f1f1;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
+            color: white;
+            background-color: #4CAF50;
+        }
     </style>
     <script src="https://scratchblocks.github.io/js/scratchblocks-v3.4-min.js"></script>
     <script src="https://scratchblocks.github.io/js/translations-all-v3.4.js"></script>
@@ -176,7 +187,9 @@
         <button id="copy-url">URLをクリップボードにコピー</button>
         <p id="result-url"></p>
     </main>
-
+    <footer>
+        This site uses the technology from <a href="https://github.com/scratchblocks/scratchblocks">scratchblocks</a>.
+    </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const selectElement = document.getElementById('column-select');
