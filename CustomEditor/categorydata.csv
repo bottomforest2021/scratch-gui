@@ -1,10 +1,10 @@
-﻿category,Ja,En
-category_motion,@addInput 　動き カテゴリー　@delInput ::ring motion,
-category_looks,@addInput　見た目 カテゴリー　@delInput ::ring looks,
-category_sound,@addInput　音 カテゴリー　@delInput ::ring sound,
-category_events,@addInput　イベント カテゴリー　 @delInput::ring events,
-category_control,@addInput　制御 カテゴリー　@delInput ::ring control,
-category_sensing,@addInput　調べる カテゴリー　@delInput ::ring sensing,
-category_operators,@addInput　演算 カテゴリー　@delInput ::ring operators,
-category_variables,@addInput　変数 カテゴリー　@delInput ::ring variables,
-category_myBlocks,@addInput　ブロック定義 カテゴリー　@delInput ::ring custom,
+category,Ja,En
+category_motion,@addInput 　動き カテゴリー　@delInput ::ring motion,@addInput Motion category @delInput ::ring motion
+category_looks,@addInput　見た目 カテゴリー　@delInput ::ring looks,@addInput Looks category @delInput ::ring looks
+category_sound,@addInput　音 カテゴリー　@delInput ::ring sound,@addInput Sound category @delInput ::ring sound
+category_events,@addInput　イベント カテゴリー　 @delInput::ring events,@addInput Events category @delInput::ring events
+category_control,@addInput　制御 カテゴリー　@delInput ::ring control,@addInput Control category @delInput ::ring control
+category_sensing,@addInput　調べる カテゴリー　@delInput ::ring sensing,@addInput Sensing category @delInput ::ring sensing
+category_operators,@addInput　演算 カテゴリー　@delInput ::ring operators,@addInput Operators category @delInput ::ring operators
+category_variables,@addInput　変数 カテゴリー　@delInput ::ring variables,@addInput Variables category @delInput ::ring variables
+category_myBlocks,@addInput　ブロック定義 カテゴリー　@delInput ::ring custom,@addInput My Blocks category @delInput ::ring custom
